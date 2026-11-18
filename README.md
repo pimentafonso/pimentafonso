@@ -7,7 +7,7 @@ Backend developer (Node.js, Django) building production-shaped systems on AWS. I
 A highly available web platform in CloudFormation: ECS Fargate across two AZs, RDS PostgreSQL Multi-AZ, ElastiCache for Valkey, CloudFront and WAF, deployed from GitHub Actions with OIDC (no long-lived keys).
 
 - Stopping a task and failing over Valkey: **0 errors** seen by clients.
-- RDS Multi-AZ failover: the database was back in **29 s** (48 s on a second run), but the app saw database errors for **6 to 14 minutes**. I traced it to IAM database authentication on the new primary; fix and re-measure next.
+- RDS Multi-AZ failover: the database was back in **29 s** (48 s on a second run), but the app saw database errors for **6 to 14 minutes**. I traced it to IAM database authentication on the new primary. With password sign-in from Secrets Manager instead, two more failovers cost **23 s and 22 s** of errors.
 
 #### [aws-event-driven-orders](https://github.com/pimentafonso/aws-event-driven-orders)
 
